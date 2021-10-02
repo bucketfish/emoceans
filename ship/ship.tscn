@@ -14,3 +14,5 @@ offset = Vector2( 0, -90 )
 [node name="wheel" type="Sprite" parent="."]
 position = Vector2( 0, -130 )
 texture = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
