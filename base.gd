@@ -21,6 +21,7 @@ export var playing = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	anim.play("start")
 	anim.play("backtomenu")
 	frontwave.playing = true
 	backwave.playing = true

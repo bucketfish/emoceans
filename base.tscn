@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://ship/ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gradient_0000.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://ship/emotions_0002.png" type="Texture" id=18]
 [ext_resource path="res://ship/emotions_0001.png" type="Texture" id=19]
 [ext_resource path="res://ship/emotions_0003.png" type="Texture" id=20]
+[ext_resource path="res://sound/emoceans.wav" type="AudioStream" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -37,7 +38,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "backtomenu"
 length = 0.1
 tracks/0/type = "value"
@@ -139,7 +140,7 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "endgame"
 length = 0.5
 tracks/0/type = "value"
@@ -259,7 +260,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -271,7 +272,7 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -283,7 +284,7 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -295,7 +296,7 @@ tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -307,13 +308,13 @@ tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "info"
 length = 0.1
 tracks/0/type = "value"
@@ -427,8 +428,7 @@ tracks/8/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "start"
+[sub_resource type="Animation" id=6]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("camera:position")
@@ -587,8 +587,7 @@ tracks/12/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "startgame"
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("camera:position")
@@ -701,7 +700,7 @@ tracks/8/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=8]
 size = 64
 font_data = ExtResource( 15 )
 
@@ -785,18 +784,18 @@ frames = SubResource( 2 )
 centered = false
 
 [node name="cutscenes" type="AnimationPlayer" parent="."]
-anims/backtomenu = SubResource( 6 )
-anims/endgame = SubResource( 7 )
-anims/info = SubResource( 8 )
-anims/start = SubResource( 3 )
-anims/startgame = SubResource( 4 )
+anims/backtomenu = SubResource( 3 )
+anims/endgame = SubResource( 4 )
+anims/info = SubResource( 5 )
+anims/start = SubResource( 6 )
+anims/startgame = SubResource( 7 )
 
 [node name="title" type="RichTextLabel" parent="."]
 margin_left = 320.304
 margin_top = 231.631
 margin_right = 720.304
 margin_bottom = 431.631
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 8 )
 text = "emoceans"
 scroll_active = false
 __meta__ = {
@@ -804,7 +803,6 @@ __meta__ = {
 }
 
 [node name="texts" type="RichTextLabel" parent="."]
-visible = false
 margin_left = 178.971
 margin_top = 298.251
 margin_right = 482.63
@@ -817,7 +815,6 @@ __meta__ = {
 }
 
 [node name="restart" parent="." instance=ExtResource( 14 )]
-visible = false
 margin_left = 95.3391
 margin_top = 418.045
 margin_right = 95.3391
@@ -882,6 +879,10 @@ texture = ExtResource( 18 )
 visible = false
 position = Vector2( 509.965, 274.742 )
 texture = ExtResource( 20 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+autoplay = true
 
 [connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="sail" to="." method="_on_sail_pressed"]
