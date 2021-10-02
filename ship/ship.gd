@@ -72,6 +72,13 @@ var colors = {
 	Emotions.SAD: "#465872"
 }
 
+onready var emotion_images = {
+	Emotions.NEUTRAL: get_node("/root/base/emotions_0002"),
+	Emotions.HAPPY: get_node("/root/base/emotions_0003"),
+	Emotions.ANGRY: get_node("/root/base/emotions_0000"),
+	Emotions.SAD: get_node("/root/base/emotions_0001")
+}
+
 var playing = true
 var t:float = 0
 var t2:float = 0
@@ -92,7 +99,7 @@ func startgame():
 	
 func change_mood():
 	if tilt < 50 && tilt > -50:
-		t = rand_range(5,10)
+		t = rand_range(5,8)
 		emotion = randi()%4
 		for i in numbers[emotion].keys():
 			set(i, numbers[emotion][i])
@@ -100,8 +107,13 @@ func change_mood():
 		$Tween.interpolate_property(background,"color",background.color,Color(backgroundcolor), 1, Tween.TRANS_LINEAR)
 		$Tween.start()
 		
+		if base.playing:
+			for i in emotion_images.keys():
+				emotion_images[i].visible = false
+			emotion_images[emotion].visible = true
+			
 	else:
-		t = rand_range(3,5)
+		t = rand_range(2,4)
 
 func change_waves():
 	t2 = rand_range(5, 8)
