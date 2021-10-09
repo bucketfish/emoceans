@@ -41,6 +41,7 @@ func game_over():
 
 
 func _on_sail_pressed():
+	timer = 0
 	anim.play("startgame")
 
 
